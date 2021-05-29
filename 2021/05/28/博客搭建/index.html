@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1.GIT只删除远程仓库，不删除本地仓库 12345git rm -r --cached target.txtgit commit -m &amp;#x27;删除了target&amp;#x27;git push  origin main      2.博客：1.写文章https:&#x2F;&#x2F;blog.csdn.net&#x2F;wsmrzx&#x2F;article&#x2F;details&#x2F;81478945 2.页面cannot get我犯了一个">
+  <meta name="description" content="GIT只删除远程仓库，不删除本地仓库 12345git rm -r --cached target.txtgit commit -m &amp;#x27;删除了target&amp;#x27;git push  origin main      博客：写文章https:&#x2F;&#x2F;blog.csdn.net&#x2F;wsmrzx&#x2F;article&#x2F;details&#x2F;81478945 页面cannot get我犯了一个智障的错误。 如">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博客搭建">
 <meta property="og:url" content="http://example.com/2021/05/28/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="1.GIT只删除远程仓库，不删除本地仓库 12345git rm -r --cached target.txtgit commit -m &amp;#x27;删除了target&amp;#x27;git push  origin main      2.博客：1.写文章https:&#x2F;&#x2F;blog.csdn.net&#x2F;wsmrzx&#x2F;article&#x2F;details&#x2F;81478945 2.页面cannot get我犯了一个">
+<meta property="og:description" content="GIT只删除远程仓库，不删除本地仓库 12345git rm -r --cached target.txtgit commit -m &amp;#x27;删除了target&amp;#x27;git push  origin main      博客：写文章https:&#x2F;&#x2F;blog.csdn.net&#x2F;wsmrzx&#x2F;article&#x2F;details&#x2F;81478945 页面cannot get我犯了一个智障的错误。 如">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-28T08:15:59.000Z">
-<meta property="article:modified_time" content="2021-05-28T11:59:57.885Z">
+<meta property="article:modified_time" content="2021-05-29T08:19:23.409Z">
 <meta property="article:author" content="Zhao Junkai">
 <meta name="twitter:card" content="summary">
 
@@ -210,10 +210,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-05-28 16:15:59 / 修改时间：19:59:57" itemprop="dateCreated datePublished" datetime="2021-05-28T16:15:59+08:00">2021-05-28</time>
+              <time title="创建时间：2021-05-28 16:15:59" itemprop="dateCreated datePublished" datetime="2021-05-28T16:15:59+08:00">2021-05-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-29 16:19:23" itemprop="dateModified" datetime="2021-05-29T16:19:23+08:00">2021-05-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -235,24 +241,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="1-GIT"><a href="#1-GIT" class="headerlink" title="1.GIT"></a>1.GIT</h3><p><strong>只删除远程仓库，不删除本地仓库</strong></p>
+        <h4 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h4><p><strong>只删除远程仓库，不删除本地仓库</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached target.txt</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&#x27;删除了target&#x27;</span></span><br><span class="line"></span><br><span class="line">git push  origin main</span><br></pre></td></tr></table></figure>
 
 
 
 
 
-<h3 id="2-博客："><a href="#2-博客：" class="headerlink" title="2.博客："></a>2.博客：</h3><h5 id="1-写文章"><a href="#1-写文章" class="headerlink" title="1.写文章"></a>1.写文章</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wsmrzx/article/details/81478945">https://blog.csdn.net/wsmrzx/article/details/81478945</a></p>
-<h5 id="2-页面cannot-get"><a href="#2-页面cannot-get" class="headerlink" title="2.页面cannot get"></a>2.页面cannot get</h5><p>我犯了一个智障的错误。</p>
+<h4 id="博客："><a href="#博客：" class="headerlink" title="博客："></a>博客：</h4><h5 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wsmrzx/article/details/81478945">https://blog.csdn.net/wsmrzx/article/details/81478945</a></p>
+<h5 id="页面cannot-get"><a href="#页面cannot-get" class="headerlink" title="页面cannot get"></a>页面cannot get</h5><p>我犯了一个智障的错误。</p>
 <p>如果把<code>_posts</code>底下的文章删掉再去<code>hexo s</code>的话，就会出现<code>Cannot Get/</code>的错误。</p>
 <p>找了好久没找到问题所在，后来随便创建了一个md文档，就没有这个毛病了。</p>
 <p>希望没有人跟我犯同样的错，真的是太睿智了。。。</p>
-<h5 id="3-无法创建文章"><a href="#3-无法创建文章" class="headerlink" title="3.无法创建文章"></a>3.无法创建文章</h5><p>D:\Blog\scaffolds下的post文件中的冒号必须是英文冒号</p>
-<h5 id="4-文章没有更新"><a href="#4-文章没有更新" class="headerlink" title="4.文章没有更新"></a>4.文章没有更新</h5><p>尝试将端口号改成3600，再换回4000</p>
+<h5 id="无法创建文章"><a href="#无法创建文章" class="headerlink" title="无法创建文章"></a>无法创建文章</h5><p>D:\Blog\scaffolds下的post文件中的冒号必须是英文冒号</p>
+<h5 id="文章没有更新"><a href="#文章没有更新" class="headerlink" title="文章没有更新"></a>文章没有更新</h5><p>尝试将端口号改成3600，再换回4000</p>
 <p>D:\Blog\node_modules\hexo-server\index.js</p>
-<h5 id="5-修改正文字体大小"><a href="#5-修改正文字体大小" class="headerlink" title="5.修改正文字体大小"></a>5.修改正文字体大小</h5><p>不要更改font-base，而是在base.styl中自己加入如下代码：</p>
+<h5 id="修改正文字体大小"><a href="#修改正文字体大小" class="headerlink" title="修改正文字体大小"></a>修改正文字体大小</h5><p>不要更改font-base，而是在base.styl中自己加入如下代码：</p>
 <p> article p{<br>font-size:14px;<br>}</p>
 <p>font-size-base ==除了标题外的字体大小</p>
+<h5 id="设置背景图片"><a href="#设置背景图片" class="headerlink" title="设置背景图片"></a>设置背景图片</h5><p>打开themes\next\source\css_common\scaffolding的base.styl，对代码做以下修改：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  background: url(/images/background.jpg); <span class="comment">//图片位置或网址</span></span><br><span class="line">    <span class="comment">//https://source.unsplash.com/random/1600x900  这是我看到的网上教程常用的随机背景图API，感觉图片比较普通</span></span><br><span class="line">    <span class="comment">//https://s0.xinger.ink/acgimg/acgurl.php   来自某神秘网站，二次元，里面很多图片都特别好看，但有些尺度比较大，慎用</span></span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">  background-attachment:fixed;</span><br><span class="line">  background-size: cover;</span><br><span class="line">  color: <span class="keyword">var</span>(--text-color);<span class="comment">//文本颜色</span></span><br><span class="line">  font-family: <span class="variable">$font</span>-family-base;<span class="comment">//字体</span></span><br><span class="line">  font-size: <span class="variable">$font</span>-size-base;<span class="comment">//文字大小  修改示例：2vh</span></span><br><span class="line">  line-height: <span class="variable">$line</span>-height-base;<span class="comment">//行距 修改示例：2vh</span></span><br><span class="line">  opacity: <span class="number">0.9</span>; <span class="comment">//不透明度</span></span><br><span class="line"></span><br><span class="line">  +tablet-mobile() &#123;</span><br><span class="line">    <span class="comment">// Remove the padding of body when the sidebar is open.</span></span><br><span class="line">    padding-left: <span class="number">0</span> !important;</span><br><span class="line">    padding-right: <span class="number">0</span> !important;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -333,7 +342,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-GIT"><span class="nav-number">1.</span> <span class="nav-text">1.GIT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8D%9A%E5%AE%A2%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">2.博客：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%86%99%E6%96%87%E7%AB%A0"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.写文章</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E9%A1%B5%E9%9D%A2cannot-get"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.页面cannot get</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%97%A0%E6%B3%95%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.无法创建文章</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E6%96%87%E7%AB%A0%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.文章没有更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E4%BF%AE%E6%94%B9%E6%AD%A3%E6%96%87%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.修改正文字体大小</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#GIT"><span class="nav-number">1.</span> <span class="nav-text">GIT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">博客：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%86%99%E6%96%87%E7%AB%A0"><span class="nav-number">2.1.</span> <span class="nav-text">写文章</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2cannot-get"><span class="nav-number">2.2.</span> <span class="nav-text">页面cannot get</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%97%A0%E6%B3%95%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="nav-number">2.3.</span> <span class="nav-text">无法创建文章</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0"><span class="nav-number">2.4.</span> <span class="nav-text">文章没有更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%AD%A3%E6%96%87%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="nav-number">2.5.</span> <span class="nav-text">修改正文字体大小</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87"><span class="nav-number">2.6.</span> <span class="nav-text">设置背景图片</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>博客搭建</title>
+    <url>/2021/05/28/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h4 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h4><p><strong>只删除远程仓库，不删除本地仓库</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">git rm -r --cached target.txt</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&#x27;删除了target&#x27;</span></span><br><span class="line"></span><br><span class="line">git push  origin main</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="博客："><a href="#博客：" class="headerlink" title="博客："></a>博客：</h4><h5 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h5><p><a href="https://blog.csdn.net/wsmrzx/article/details/81478945">https://blog.csdn.net/wsmrzx/article/details/81478945</a></p>
+<h5 id="页面cannot-get"><a href="#页面cannot-get" class="headerlink" title="页面cannot get"></a>页面cannot get</h5><p>我犯了一个智障的错误。</p>
+<p>如果把<code>_posts</code>底下的文章删掉再去<code>hexo s</code>的话，就会出现<code>Cannot Get/</code>的错误。</p>
+<p>找了好久没找到问题所在，后来随便创建了一个md文档，就没有这个毛病了。</p>
+<p>希望没有人跟我犯同样的错，真的是太睿智了。。。</p>
+<h5 id="无法创建文章"><a href="#无法创建文章" class="headerlink" title="无法创建文章"></a>无法创建文章</h5><p>D:\Blog\scaffolds下的post文件中的冒号必须是英文冒号</p>
+<h5 id="文章没有更新"><a href="#文章没有更新" class="headerlink" title="文章没有更新"></a>文章没有更新</h5><p>尝试将端口号改成3600，再换回4000</p>
+<p>D:\Blog\node_modules\hexo-server\index.js</p>
+<h5 id="修改正文字体大小"><a href="#修改正文字体大小" class="headerlink" title="修改正文字体大小"></a>修改正文字体大小</h5><p>不要更改font-base，而是在base.styl中自己加入如下代码：</p>
+<p> article p{<br>font-size:14px;<br>}</p>
+<p>font-size-base ==除了标题外的字体大小</p>
+<h5 id="设置背景图片"><a href="#设置背景图片" class="headerlink" title="设置背景图片"></a>设置背景图片</h5><p>打开themes\next\source\css_common\scaffolding的base.styl，对代码做以下修改：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  background: url(/images/background.jpg); <span class="comment">//图片位置或网址</span></span><br><span class="line">    <span class="comment">//https://source.unsplash.com/random/1600x900  这是我看到的网上教程常用的随机背景图API，感觉图片比较普通</span></span><br><span class="line">    <span class="comment">//https://s0.xinger.ink/acgimg/acgurl.php   来自某神秘网站，二次元，里面很多图片都特别好看，但有些尺度比较大，慎用</span></span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">  background-attachment:fixed;</span><br><span class="line">  background-size: cover;</span><br><span class="line">  color: <span class="keyword">var</span>(--text-color);<span class="comment">//文本颜色</span></span><br><span class="line">  font-family: <span class="variable">$font</span>-family-base;<span class="comment">//字体</span></span><br><span class="line">  font-size: <span class="variable">$font</span>-size-base;<span class="comment">//文字大小  修改示例：2vh</span></span><br><span class="line">  line-height: <span class="variable">$line</span>-height-base;<span class="comment">//行距 修改示例：2vh</span></span><br><span class="line">  opacity: <span class="number">0.9</span>; <span class="comment">//不透明度</span></span><br><span class="line"></span><br><span class="line">  +tablet-mobile() &#123;</span><br><span class="line">    <span class="comment">// Remove the padding of body when the sidebar is open.</span></span><br><span class="line">    padding-left: <span class="number">0</span> !important;</span><br><span class="line">    padding-right: <span class="number">0</span> !important;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>备忘</category>
+      </categories>
+  </entry>
+  <entry>
     <title>RHCE课程笔记</title>
     <url>/2021/05/28/RHCE%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h5 id="1-用户"><a href="#1-用户" class="headerlink" title="1.用户"></a>1.用户</h5><h6 id="1-用户-1"><a href="#1-用户-1" class="headerlink" title="1.用户"></a>1.用户</h6><p>用户：root=0；<br>系统用户UID为1~999   //不能登陆系统<br>普通用户从1000开始</p>
@@ -85,32 +114,6 @@
 ]]></content>
       <categories>
         <category>闲谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>博客搭建</title>
-    <url>/2021/05/28/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<h3 id="1-GIT"><a href="#1-GIT" class="headerlink" title="1.GIT"></a>1.GIT</h3><p><strong>只删除远程仓库，不删除本地仓库</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">git rm -r --cached target.txt</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&#x27;删除了target&#x27;</span></span><br><span class="line"></span><br><span class="line">git push  origin main</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="2-博客："><a href="#2-博客：" class="headerlink" title="2.博客："></a>2.博客：</h3><h5 id="1-写文章"><a href="#1-写文章" class="headerlink" title="1.写文章"></a>1.写文章</h5><p><a href="https://blog.csdn.net/wsmrzx/article/details/81478945">https://blog.csdn.net/wsmrzx/article/details/81478945</a></p>
-<h5 id="2-页面cannot-get"><a href="#2-页面cannot-get" class="headerlink" title="2.页面cannot get"></a>2.页面cannot get</h5><p>我犯了一个智障的错误。</p>
-<p>如果把<code>_posts</code>底下的文章删掉再去<code>hexo s</code>的话，就会出现<code>Cannot Get/</code>的错误。</p>
-<p>找了好久没找到问题所在，后来随便创建了一个md文档，就没有这个毛病了。</p>
-<p>希望没有人跟我犯同样的错，真的是太睿智了。。。</p>
-<h5 id="3-无法创建文章"><a href="#3-无法创建文章" class="headerlink" title="3.无法创建文章"></a>3.无法创建文章</h5><p>D:\Blog\scaffolds下的post文件中的冒号必须是英文冒号</p>
-<h5 id="4-文章没有更新"><a href="#4-文章没有更新" class="headerlink" title="4.文章没有更新"></a>4.文章没有更新</h5><p>尝试将端口号改成3600，再换回4000</p>
-<p>D:\Blog\node_modules\hexo-server\index.js</p>
-<h5 id="5-修改正文字体大小"><a href="#5-修改正文字体大小" class="headerlink" title="5.修改正文字体大小"></a>5.修改正文字体大小</h5><p>不要更改font-base，而是在base.styl中自己加入如下代码：</p>
-<p> article p{<br>font-size:14px;<br>}</p>
-<p>font-size-base ==除了标题外的字体大小</p>
-]]></content>
-      <categories>
-        <category>备忘</category>
       </categories>
   </entry>
   <entry>
