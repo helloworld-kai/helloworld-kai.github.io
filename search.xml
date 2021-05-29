@@ -79,26 +79,6 @@
       </categories>
   </entry>
   <entry>
-    <title>我的博客网站</title>
-    <url>/2021/05/28/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-1/</url>
-    <content><![CDATA[<p> 自己动手搭建的第一个网站，踩了好多坑，anyway，还是成功了。成就感get。</p>
-]]></content>
-      <categories>
-        <category>闲谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>解决DIV相互重叠问题</title>
-    <url>/2021/05/29/%E8%A7%A3%E5%86%B3DIV%E7%9B%B8%E4%BA%92%E9%87%8D%E5%8F%A0%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>场景：网站设计中，首页的pagebody中有2块div，一块是sidebar，另一块是mainbody。最下面是foot的div。</p>
-<p>问题：foot的div会和pagebody的2块div重叠</p>
-<p>解决：<a href="http://www.divcss5.com/rumen/r674.shtml">http://www.divcss5.com/rumen/r674.shtml</a></p>
-]]></content>
-      <categories>
-        <category>WEB前端</category>
-      </categories>
-  </entry>
-  <entry>
     <title>博客搭建</title>
     <url>/2021/05/28/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<h4 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h4><p><strong>只删除远程仓库，不删除本地仓库</strong></p>
@@ -125,9 +105,32 @@
 
 
 <p>高清图片网站推荐：<a href="https://blog.csdn.net/qq_43925037/article/details/107310384">https://blog.csdn.net/qq_43925037/article/details/107310384</a></p>
+<h5 id="设置分类页面的字体大小"><a href="#设置分类页面的字体大小" class="headerlink" title="设置分类页面的字体大小"></a>设置分类页面的字体大小</h5><p><code>themes\next\source\css\_common\component\pages\categories.styl</code> 中修改：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">.category-<span class="keyword">list</span>-item &#123; </span><br><span class="line">  margin: <span class="number">5</span>px <span class="number">10</span>px; </span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">  display: inline-block; <span class="comment">// 横向显示</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>备忘</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>我的博客网站</title>
+    <url>/2021/05/28/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-1/</url>
+    <content><![CDATA[<p> 自己动手搭建的第一个网站，踩了好多坑，anyway，还是成功了。成就感get。</p>
+]]></content>
+      <categories>
+        <category>闲谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>解决DIV相互重叠问题</title>
+    <url>/2021/05/29/%E8%A7%A3%E5%86%B3DIV%E7%9B%B8%E4%BA%92%E9%87%8D%E5%8F%A0%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>场景：网站设计中，首页的pagebody中有2块div，一块是sidebar，另一块是mainbody。最下面是foot的div。</p>
+<p>问题：foot的div会和pagebody的2块div重叠</p>
+<p>解决：<a href="http://www.divcss5.com/rumen/r674.shtml">http://www.divcss5.com/rumen/r674.shtml</a></p>
+]]></content>
+      <categories>
+        <category>WEB前端</category>
       </categories>
   </entry>
 </search>

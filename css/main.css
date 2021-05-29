@@ -1175,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #fff;
+  background: #55669a;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1982,6 +1982,7 @@ pre .javascript .function {
 }
 .category-all-page .category-list-item {
   margin: 5px 10px;
+  font-size: 14px;
 }
 .category-all-page .category-list-count {
   color: #bbb;
