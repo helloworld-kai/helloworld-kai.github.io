@@ -3,33 +3,59 @@
   <entry>
     <title>RHCE课程笔记</title>
     <url>/2021/05/28/RHCE%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h5 id="1-用户"><a href="#1-用户" class="headerlink" title="1.用户"></a>1.用户</h5><h6 id="1-用户-1"><a href="#1-用户-1" class="headerlink" title="1.用户"></a>1.用户</h6><p>用户：root=0；<br>系统用户UID为1~999   //不能登陆系统<br>普通用户从1000开始</p>
+    <content><![CDATA[<h5 id="1-用户"><a href="#1-用户" class="headerlink" title="1.用户"></a>1.用户</h5><h6 id="1-用户-1"><a href="#1-用户-1" class="headerlink" title="1.用户"></a>1.用户</h6><p><code>用户：root=0；</code><br>系统用户UID为1~999   //不能登陆系统<br>普通用户从1000开始</p>
 <p>==test：x：1888:1999::/home/inmind:/bin/bash==</p>
 <p>1888—用户ID<br>1999–用户组ID</p>
 <p>/home/inmind—用户家目录</p>
 <p>/bin/bash：可以用shell命令行<br>/sbin/nologin：不可以</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">命令：</span><br><span class="line"><span class="number">1.</span>useradd</span><br><span class="line">-u：用户ID</span><br><span class="line">-g：组</span><br><span class="line">-d：家目录</span><br><span class="line">-G：附加组</span><br><span class="line">-s：指定shell文件  默认/<span class="built_in">bin</span>/bash</span><br><span class="line"></span><br><span class="line">useradd ZHAOJUNKAI</span><br><span class="line">userdel -f ZHAOJUNKAI</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>groupadd work</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>修改密码</span><br><span class="line"><span class="number">3.1</span></span><br><span class="line">passwd user1</span><br><span class="line">输入密码：******   //很麻烦</span><br><span class="line"></span><br><span class="line"><span class="number">3.2</span></span><br><span class="line">echo <span class="number">123456</span> | passwd --stdin user1</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>chage</span><br><span class="line">chage -d <span class="number">0</span> user1 </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">命令：</span><br><span class="line"><span class="number">1.</span>useradd</span><br><span class="line">-u：用户ID</span><br><span class="line">-g：组</span><br><span class="line">-d：家目录</span><br><span class="line">-G：附加组</span><br><span class="line">-s：指定shell文件  默认/<span class="built_in">bin</span>/bash</span><br><span class="line"></span><br><span class="line">useradd ZHAOJUNKAI</span><br><span class="line">userdel -f ZHAOJUNKAI</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>groupadd</span><br><span class="line">-g：组ID</span><br><span class="line">-d：组目录</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>修改密码</span><br><span class="line"><span class="number">3.1</span></span><br><span class="line">passwd user1</span><br><span class="line">输入密码：******   //很麻烦</span><br><span class="line"></span><br><span class="line"><span class="number">3.2</span></span><br><span class="line">echo <span class="number">123456</span> | passwd --stdin user1</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>chage</span><br><span class="line">-m      最小期限</span><br><span class="line">-M      最大期限</span><br><span class="line">-W      告警周期</span><br><span class="line">-I  (大写的i)     失效周期</span><br><span class="line">-d       强制要求用户下次登陆要修改密码</span><br><span class="line">-l  （小写的l）  显示用户信息</span><br><span class="line"></span><br><span class="line">chage  -d <span class="number">0</span>  user1    强制要求user1 下次登陆要修改密码</span><br></pre></td></tr></table></figure>
 
-
-
+<p>密码文件：/etc/shadow</p>
+<p>字段1   用户名称<br>2        加密秘钥的字符串信息<br>3        最近一次修改密码的时间  表示的是从1970年1.1到修改密码的那一天 的天数<br>4       密码的最短使用天数<br>5       密码的最长有效期  最多99999<br>6       密码到期的告警天数  默认为7<br>7        密码过期后 账号活跃保持天数   如果指定天数到期 则账号被锁定<br>8        账号失效时间  默认永不失效</p>
 <h6 id="2-文件"><a href="#2-文件" class="headerlink" title="2.文件"></a>2.文件</h6><p>==-rw-r–r–.  1 root    root      26 Apr 10 02:51 python.txt==</p>
 <p>-表示普通文件<br>d表示目录<br>26表示：26k</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>MD5加密</span><br><span class="line">md5sum</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>修改文件</span><br><span class="line">chmod <span class="number">666</span> text1.txt    --设置文件/目录的权限</span><br><span class="line">chmod u+x,g-w,o+w text1.txt</span><br><span class="line"></span><br><span class="line">chown inmind:inmind1 python.txt   --设置所有者和所属主</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>tar</span><br><span class="line">tar -cvf txt text1 text2   --将text1和<span class="number">2</span>压缩到txt中</span><br><span class="line">tar -xvf txt (-C 目录)       --解压到指定目录</span><br><span class="line"></span><br><span class="line">Gzip：快     -czvf    后缀：.tar.gz</span><br><span class="line">Bzip：慢但是压缩比例高，节省空间  -cjvf    后缀：.tar.bz</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>MD5加密</span><br><span class="line">md5sum</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>修改文件</span><br><span class="line">chmod <span class="number">666</span> text1.txt    --设置文件/目录的权限</span><br><span class="line">chmod u+x,g-w,o+w text1.txt</span><br><span class="line"></span><br><span class="line">chown inmind:inmind1 python.txt   --设置所有者和所属主</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>tar</span><br><span class="line">tar -cvf txt text1 text2   --将text1和<span class="number">2</span>归档到txt中</span><br><span class="line">tar -xvf txt (-C 目录)       --解压到指定目录</span><br><span class="line"></span><br><span class="line">Gzip：快     -czvf    后缀：.tar.gz</span><br><span class="line">Bzip：慢但是压缩比例高，节省空间  -cjvf    后缀：.tar.bz</span><br><span class="line"></span><br><span class="line">归档 把多个文件归档成一个 它不是压缩 并不能压缩大小</span><br></pre></td></tr></table></figure>
 
-
-
-<h6 id="3-文本处理工具："><a href="#3-文本处理工具：" class="headerlink" title="3.文本处理工具："></a>3.文本处理工具：</h6><p>3.1==less==：</p>
+<h6 id="3-文件安全："><a href="#3-文件安全：" class="headerlink" title="3.文件安全："></a>3.文件安全：</h6><p>SUID:  ==chmod u+s==   甲对文件A有执行权限，乙没有，通过SUID，乙就有了。就可以使用文件A的命令了。</p>
+<p>SGID:  ==chmod g+s==   当一个目录被设置了SGID后 ，任何人在这个目录中创建的文件，都属于这个目录所有者</p>
+<p>SBIT:  ==chmod o+t==   假设这个目录里面对象是其他人  针对其他人一旦被打上T这个值<br>那么这个目录中其他用户创建的任何文件，只有文件所有者才能删除</p>
+<h6 id="4-文本处理工具："><a href="#4-文本处理工具：" class="headerlink" title="4.文本处理工具："></a>4.文本处理工具：</h6><p>1.==less==：</p>
 <ol>
 <li>/关键字 可以用来查找</li>
 <li>按v进入vim编辑</li>
 <li>:+q是退出</li>
 </ol>
-<p>3.2  head/tail  -n 3   查看头/尾部3行</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">LINUX三剑客</span><br><span class="line"><span class="number">1.</span>grep</span><br><span class="line">[root@localhost ~]<span class="comment"># grep root /etc/passwd</span></span><br><span class="line">root:x:<span class="number">0</span>:<span class="number">0</span>:root:/root:/<span class="built_in">bin</span>/bash</span><br><span class="line">operator:x:<span class="number">11</span>:<span class="number">0</span>:operator:/root:/sbin/nologin</span><br><span class="line">                        </span><br><span class="line">grep -n   //显示行数</span><br><span class="line">grep -v   //显示不匹配的内容</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>sed 流编辑器</span><br><span class="line">sed -n -5p /etc/passwd  打印第<span class="number">5</span>行的内容</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>awk 排版</span><br><span class="line">常用于显示IP</span><br><span class="line">[root@localhost ~]<span class="comment"># ip address | grep ens160 | grep inet | awk &#x27;&#123;print$2&#125;&#x27;  //$2表示第二行</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.39</span><span class="number">.234</span>/<span class="number">24</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>2.head/tail  -n 3   查看头/尾部3行</p>
+<p>3.find</p>
+<p>用于查找的条件：</p>
+<p>1.文件名 inode<br>2.属主 属组<br>3.文件类型<br>4.文件大小<br>5.时间<br>6.权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1.按范围</span><br><span class="line">find &#x2F; -name whoami.txt		在根目录下查找文件</span><br><span class="line"></span><br><span class="line">2.按属主</span><br><span class="line">find -user root		查找属主是root的文件</span><br><span class="line"></span><br><span class="line">3.按大小</span><br><span class="line">find  -size  +5M   查找大于5M的文件</span><br><span class="line"></span><br><span class="line">4.按权限</span><br><span class="line">find -perm 777	   查找权限是7777的文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
-<h6 id=""><a href="#" class="headerlink" title=""></a></h6><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>cut</span><br><span class="line">cut -d: -f1 /etc/passwd     打印以:为分隔符的第一列内容</span><br><span class="line">        </span><br><span class="line"><span class="number">2.</span>sort 排序</span><br><span class="line">比较的是一行的第一个字符</span><br><span class="line">-r 降序</span><br><span class="line">-n 数字排序</span><br><span class="line">-f 忽略大小写</span><br><span class="line">-u 删除重复的行</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">LINUX三剑客</span><br><span class="line">1.grep</span><br><span class="line">[root@localhost ~]# grep root /etc/passwd</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">operator:x:11:0:operator:/root:/sbin/nologin</span><br><span class="line">                        </span><br><span class="line">grep -n   //显示行数</span><br><span class="line">grep -v   //显示不匹配的内容</span><br><span class="line"></span><br><span class="line">2.sed 流编辑器</span><br><span class="line">sed -n -5p /etc/passwd  打印第5行的内容</span><br><span class="line"></span><br><span class="line">3.awk 排版</span><br><span class="line">常用于显示IP</span><br><span class="line">[root@localhost ~]# ip address | grep ens160 | grep inet | awk &#x27;&#123;print$2&#125;&#x27;  //$2表示第二行</span><br><span class="line">192.168.39.234/24</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>cut</span><br><span class="line">cut -d: -f1 /etc/passwd     打印以:为分隔符的第一列内容</span><br><span class="line">        </span><br><span class="line"><span class="number">2.</span>sort 排序</span><br><span class="line">比较的是一行的第一个字符</span><br><span class="line">-r 降序</span><br><span class="line">-n 数字排序</span><br><span class="line">-f 忽略大小写</span><br><span class="line">-u 删除重复的行</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -43,12 +69,42 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 <h5 id="3-正则表达式"><a href="#3-正则表达式" class="headerlink" title="3.正则表达式"></a>3.正则表达式</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">^ro	//以ro开头    grep ^ro text.txt</span><br><span class="line">ot$	//以ot结尾</span><br><span class="line">ro.t	//.匹配任意字符</span><br><span class="line">ro*t	//匹配o0次或无数次，在Linux中要加上转义字符。\*。在LINUX中，*代表所有！！！</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
 
 
 
 <h5 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h5><p>变量：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># username=Kai</span></span><br><span class="line">[root@localhost ~]<span class="comment"># echo $username </span></span><br><span class="line">Kai</span><br><span class="line"></span><br><span class="line">系统变量：</span><br><span class="line">$PATH</span><br><span class="line">$HOME</span><br><span class="line">$UID</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
 
 <h5 id="5-系统状态"><a href="#5-系统状态" class="headerlink" title="5.系统状态"></a>5.系统状态</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>ps -aux 查看进程</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>top</span><br><span class="line">top p <span class="number">1</span>  //只显示进程<span class="number">1</span></span><br><span class="line"></span><br><span class="line">C：命令排行 </span><br><span class="line">M：内存</span><br><span class="line">P：cpu</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">调度优先级:</span><br><span class="line">nice值越低，优先级越高</span><br></pre></td></tr></table></figure>
 
@@ -62,7 +118,15 @@
 <li>s 子进程</li>
 <li>&lt; 高优先级</li>
 </ol>
-<h5 id="6-网络管理"><a href="#6-网络管理" class="headerlink" title="6.网络管理"></a>6.网络管理</h5><h5 id="7-SHELL"><a href="#7-SHELL" class="headerlink" title="7.SHELL"></a>7.SHELL</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>用户输入</span><br><span class="line">[root@server ~]<span class="comment"># cat test.sh </span></span><br><span class="line"><span class="comment">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line">read -p <span class="string">&quot;Please input your name:&quot;</span> NAME</span><br><span class="line">echo <span class="string">&quot;your name is : $NAME&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span><span class="keyword">if</span>语句</span><br><span class="line"><span class="comment">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line">num1=<span class="number">1</span></span><br><span class="line">num2=<span class="number">2</span></span><br><span class="line">num3=<span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ $num1 -gt $num2 ]</span><br><span class="line">then</span><br><span class="line">	echo <span class="string">&quot;num1 is winner&quot;</span></span><br><span class="line"><span class="keyword">elif</span> [ $num1 -lt $num2 ]</span><br><span class="line">then </span><br><span class="line">	echo <span class="string">&quot;num2 is winner&quot;</span></span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">	echo <span class="string">&quot;num1 and num2 is both winner&quot;</span></span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>案例，创建用户</span><br><span class="line">[root@server ~]<span class="comment"># cat user_add.sh </span></span><br><span class="line"><span class="comment">#! /bin/bash</span></span><br><span class="line">read -p <span class="string">&quot;Please enter your name and password:&quot;</span> first last</span><br><span class="line">useradd $first</span><br><span class="line"></span><br><span class="line">echo $last | passwd --stdin $first</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>监控硬盘和内存</span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line">mem_size=$(free | awk <span class="string">&#x27;/Mem/&#123;print $4&#125;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">disk_size=$(df / | awk <span class="string">&#x27;/\//&#123;print $4&#125;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">i=<span class="number">1</span></span><br><span class="line"><span class="keyword">while</span>  [ $i -eq <span class="number">1</span> ] </span><br><span class="line">do</span><br><span class="line">        <span class="keyword">if</span> [ $disk_size -le <span class="number">51200</span> -o $mem_size -le <span class="number">102400000</span> ]</span><br><span class="line">        then</span><br><span class="line">                echo <span class="string">&quot;warning !&quot;</span></span><br><span class="line">        fi</span><br><span class="line">let i++</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span>ping同网段主机</span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;<span class="number">120.</span><span class="number">.160</span>&#125;</span><br><span class="line">do</span><br><span class="line">        ping -c <span class="number">2</span> -i <span class="number">0.3</span> -w <span class="number">1</span> <span class="number">192.168</span><span class="number">.39</span>.$i &amp;&gt; /dev/null</span><br><span class="line">        if [ $? -eq 0 ];then</span><br><span class="line">                echo <span class="string">&quot;192.168.39.$i is up&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                echo <span class="string">&quot;192.168.39.$i is down&quot;</span></span><br><span class="line">        fi</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">6.</span>实时数据扫描</span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">while</span> :</span><br><span class="line">do</span><br><span class="line">	echo <span class="string">&quot;current ens224 packet data:&quot;</span></span><br><span class="line">	ifconfig ens224 | grep <span class="string">&quot;RX pack&quot;</span> | awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span> </span><br><span class="line">        ifconfig ens224 | grep <span class="string">&quot;TX pack&quot;</span> | awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span></span><br><span class="line">	sleep <span class="number">1</span></span><br><span class="line">done </span><br><span class="line"></span><br><span class="line"><span class="number">7.</span>判断是否是root用户</span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ $USER == <span class="string">&quot;root&quot;</span> ]</span><br><span class="line">then</span><br><span class="line">	echo <span class="string">&quot;Welcome root!&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	powerof<span class="string">f&quot;</span></span><br><span class="line"><span class="string">fi</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+<h5 id="6-网络管理"><a href="#6-网络管理" class="headerlink" title="6.网络管理"></a>6.网络管理</h5><p>网卡配置文件： /etc/sysconfig/network-scripts/ifcfg-ens33</p>
+<h6 id="1-概念："><a href="#1-概念：" class="headerlink" title="1.概念："></a>1.概念：</h6><p>device：叫网络接口。是物理设备—网卡<br>connection：是连接<br>多个connection可以应用到同一个device，但同一时间只能启用其中一个connection</p>
+<p>ifname:网卡名<br>con-name：连接名</p>
+<h6 id="2-命令："><a href="#2-命令：" class="headerlink" title="2.命令："></a>2.命令：</h6><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1.device（网卡）操作</span><br><span class="line">开启设备：nmcli device connect ens224</span><br><span class="line">关闭设备：nmcli device disconnect ens224</span><br><span class="line"></span><br><span class="line">2.connection操作</span><br><span class="line">开启：nmcli connection up ens160</span><br><span class="line">关闭：nmcli connection down ens224</span><br><span class="line"></span><br><span class="line">3.添加connection</span><br><span class="line">nmcli connection modify ens161 ipv4.method manual ipv4.addresses 192.168.39.148/24 ipv4.gateway 192.168.39.2</span><br><span class="line">nmcli connection down ens161</span><br><span class="line">nmcli connection up ens161</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>==注意：修改connection的IP后需要down+up连接才能生效==</p>
+<h6 id="3-主机名"><a href="#3-主机名" class="headerlink" title="3.主机名"></a>3.主机名</h6><p>主机名配置文件： /etc/hostname</p>
+<p>修改主机名：<br>hostnamectl set-hostname server.example<br>bash</p>
+<h5 id="7-SHELL"><a href="#7-SHELL" class="headerlink" title="7.SHELL"></a>7.SHELL</h5><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1.用户输入</span><br><span class="line">[root@server ~]# cat test.sh </span><br><span class="line">#! /bin/bash</span><br><span class="line"></span><br><span class="line">read -p &quot;Please input your name:&quot; NAME</span><br><span class="line">echo &quot;your name is : $NAME&quot;</span><br><span class="line"></span><br><span class="line">2.if语句</span><br><span class="line">#! /bin/bash</span><br><span class="line"></span><br><span class="line">num1=1</span><br><span class="line">num2=2</span><br><span class="line">num3=3</span><br><span class="line"></span><br><span class="line">if [ $num1 -gt $num2 ]</span><br><span class="line">then</span><br><span class="line">	echo &quot;num1 is winner&quot;</span><br><span class="line">elif [ $num1 -lt $num2 ]</span><br><span class="line">then </span><br><span class="line">	echo &quot;num2 is winner&quot;</span><br><span class="line">else </span><br><span class="line">	echo &quot;num1 and num2 is both winner&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">3.案例，创建用户</span><br><span class="line">[root@server ~]# cat user_add.sh </span><br><span class="line">#! /bin/bash</span><br><span class="line">read -p &quot;Please enter your name and password:&quot; first last</span><br><span class="line">useradd $first</span><br><span class="line"></span><br><span class="line">echo $last | passwd --stdin $first</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4.监控硬盘和内存</span><br><span class="line">#!/bin/bash</span><br><span class="line">mem_size=$(free | awk &#x27;/Mem/&#123;print $4&#125;&#x27;)</span><br><span class="line"></span><br><span class="line">disk_size=$(df / | awk &#x27;/\//&#123;print $4&#125;&#x27;)</span><br><span class="line"></span><br><span class="line">i=1</span><br><span class="line">while  [ $i -eq 1 ] </span><br><span class="line">do</span><br><span class="line">        if [ $disk_size -le 51200 -o $mem_size -le 102400000 ]</span><br><span class="line">        then</span><br><span class="line">                echo &quot;warning !&quot;</span><br><span class="line">        fi</span><br><span class="line">let i++</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">5.ping同网段主机</span><br><span class="line">#!/bin/bash</span><br><span class="line">for i in &#123;120..160&#125;</span><br><span class="line">do</span><br><span class="line">        ping -c 2 -i 0.3 -w 1 192.168.39.$i &amp;&gt; /dev/null</span><br><span class="line">        if [ $? -eq 0 ];then</span><br><span class="line">                echo &quot;192.168.39.$i is up&quot;</span><br><span class="line">        else</span><br><span class="line">                echo &quot;192.168.39.$i is down&quot;</span><br><span class="line">        fi</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">6.实时数据扫描</span><br><span class="line">#!/bin/bash</span><br><span class="line">while :</span><br><span class="line">do</span><br><span class="line">	echo &quot;current ens224 packet data:&quot;</span><br><span class="line">	ifconfig ens224 | grep &quot;RX pack&quot; | awk &#x27;&#123;print $5&#125;&#x27; </span><br><span class="line">        ifconfig ens224 | grep &quot;TX pack&quot; | awk &#x27;&#123;print $5&#125;&#x27;</span><br><span class="line">	sleep 1</span><br><span class="line">done </span><br><span class="line"></span><br><span class="line">7.判断是否是root用户</span><br><span class="line">#!/bin/bash</span><br><span class="line">if [ $USER == &quot;root&quot; ]</span><br><span class="line">then</span><br><span class="line">	echo &quot;Welcome root!&quot;</span><br><span class="line">else</span><br><span class="line">	poweroff&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
@@ -73,6 +137,12 @@
 <li>BIOS开机自检</li>
 <li>计算机从存储设备中读取512bytes，</li>
 </ol>
+<h5 id="8-YUM"><a href="#8-YUM" class="headerlink" title="8.YUM"></a>8.YUM</h5><p>位置在/etc/yum.repos.d</p>
+<p>yum的配置文件是以.repo结尾</p>
+<p>==手工配置YUM源：==</p>
+<p>[base]<br>name=whoami<br>baseurl=<a href="https://mirrors.aliyun.com/centos/$releasever/AppStream/$basearch/os/">https://mirrors.aliyun.com/centos/$releasever/AppStream/$basearch/os/</a><br>gpgcheck=1<br>gpgkey=<a href="https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOs-Official">https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOs-Official</a><br>enable=1</p>
+<p> 列出可用仓库：yum repolist</p>
+<p>curl -o home.html  <a href="http://www.sina.com.cn/">http://www.sina.com.cn</a>    抓取页面内容到一个文件中</p>
 ]]></content>
       <categories>
         <category>LINUX</category>
@@ -107,6 +177,13 @@
 <p>高清图片网站推荐：<a href="https://blog.csdn.net/qq_43925037/article/details/107310384">https://blog.csdn.net/qq_43925037/article/details/107310384</a></p>
 <h5 id="设置分类页面的字体大小"><a href="#设置分类页面的字体大小" class="headerlink" title="设置分类页面的字体大小"></a>设置分类页面的字体大小</h5><p><code>themes\next\source\css\_common\component\pages\categories.styl</code> 中修改：</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">.category-<span class="keyword">list</span>-item &#123; </span><br><span class="line">  margin: <span class="number">5</span>px <span class="number">10</span>px; </span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">  display: inline-block; <span class="comment">// 横向显示</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="修改高亮格式："><a href="#修改高亮格式：" class="headerlink" title="修改高亮格式："></a>修改高亮格式：</h5><p>themes\next\source\css_variables\base.styl文件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">// --------------------------------------------------</span><br><span class="line">$code-font-family               = $font-family-monospace;</span><br><span class="line">$code-foreground                = black;    		字体颜色</span><br><span class="line">$code-background                = $gainsboro;		背景颜色</span><br></pre></td></tr></table></figure>
+
+
 
 ]]></content>
       <categories>
