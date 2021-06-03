@@ -178,7 +178,7 @@ body {
   height: 100%;
 }
 body {
-  background: url("/images/mountain-6253669_1280.jpg");
+  background: url("/images/surfer-1838958_1280.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -1175,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #7e3258;
+  background: #62ffc4;
   border-radius: 50%;
   content: ' ';
   display: inline-block;

@@ -141,8 +141,61 @@
 <p>yum的配置文件是以.repo结尾</p>
 <p>==手工配置YUM源：==</p>
 <p>[base]<br>name=whoami<br>baseurl=<a href="https://mirrors.aliyun.com/centos/$releasever/AppStream/$basearch/os/">https://mirrors.aliyun.com/centos/$releasever/AppStream/$basearch/os/</a><br>gpgcheck=1<br>gpgkey=<a href="https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOs-Official">https://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOs-Official</a><br>enable=1</p>
+<p>curl -o /etc/yum.repos.d/CentOS-Base.repo <a href="https://mirrors.aliyun.com/repo/Centos-8.repo">https://mirrors.aliyun.com/repo/Centos-8.repo</a></p>
 <p> 列出可用仓库：yum repolist</p>
 <p>curl -o home.html  <a href="http://www.sina.com.cn/">http://www.sina.com.cn</a>    抓取页面内容到一个文件中</p>
+<h5 id="9-文件系统"><a href="#9-文件系统" class="headerlink" title="9.文件系统"></a>9.文件系统</h5><h6 id="1-inode"><a href="#1-inode" class="headerlink" title="1.inode"></a>1.inode</h6><p>inode：每个文件都有的一个值，<br>用来存储文件的元数据信息：<br>–文件类型 权限  UID   GID<br>–文件的链接数<br>–大小  时间</p>
+<p>查看命令：ls -i</p>
+<h6 id="2-链接"><a href="#2-链接" class="headerlink" title="2.链接"></a>2.链接</h6><p>硬链接：inode值相同，删除源文件，链接文件可以打开<br> <code>ln 516.txt hard.txt  </code> </p>
+<p>软链接：inode值不同，删除源文件，链接文件打不开<br><code>ln -s 516.txt soft.txt     </code></p>
+<p>文件类型：</p>
+<p>普通文件     -<br>目录            d<br>链接文件     l<br>设备文件    c   串行端口设备   鼠标  键盘<br>                    b   存储数据的设备   硬盘 磁盘 固态</p>
+<h5 id="10-系统服务"><a href="#10-系统服务" class="headerlink" title="10.系统服务"></a>10.系统服务</h5><p>systemctl enable：开机自启<br>systemctl mask：屏蔽服务</p>
+<h6 id="1-systemctl-target"><a href="#1-systemctl-target" class="headerlink" title="1.systemctl target"></a>1.systemctl target</h6><p>graphical.target  系统支持多用户，多图形化和文本的登录</p>
+<p>multi-user.target  系统支持多用户，基于文本的登录</p>
+<p>rescue.target   系统初始化  需要root登录</p>
+<p>emergency.target   只读挂载文件系统  需要用root登录    </p>
+<p><code>systemctl get-default   </code>    读取当前系统默认的启动目标</p>
+<p> <code>systemctl set-default  rescue.target</code>  切换下次开机的运行目标</p>
+<p>紧急模式下，我们不能对系统做任何操作，那怎么回复正常模式呢？？？</p>
+<p>首先重新启动<br>然后把光标移到需要启动的内核（第一个）<br>然后按e进行编辑<br>然后移动到linux开头的行 在末尾输入 <code>systemd.unit=graphical.target</code><br>然后ctrl + x，就可以正常开机了</p>
+<p>注意：这只是打断了当前本次开机进程 </p>
+<p>此时你的默认target还是emergency</p>
+<p>所以尽快修改为graphical.target</p>
+<h6 id="2-强制修改开机密码"><a href="#2-强制修改开机密码" class="headerlink" title="2.强制修改开机密码"></a>2.强制修改开机密码</h6><p>1.重启系统</p>
+<p>2.将光标移动到要启动的内核</p>
+<p>3按e来编辑</p>
+<p>4在linux开头的行的末位 输入rd.break</p>
+<p>5.ctrl+x继续启动</p>
+<p>进入swith_root</p>
+<p> 重置密码：</p>
+<p>1.重启以读写的方式挂载/sysroot</p>
+<p>命令：mount -o remount,rw /sysroot</p>
+<p>2.切换到真正操作系统的根/sysroot</p>
+<p>命令：chroot  /sysroot</p>
+<p>3.重置密码：</p>
+<p>命令：echo 123456 |passwd –stdin root</p>
+<p>4.打标签：</p>
+<p>命令：touch /.autorelabel</p>
+<p>exit退出两次</p>
+<h5 id="11-LVM"><a href="#11-LVM" class="headerlink" title="11.LVM"></a>11.LVM</h5><img src="../../../typora图片/clip_image002-1622635110285.jpg" alt="2" style="zoom:100%;" align="left"/>
+
+<h6 id="1-创建逻辑卷"><a href="#1-创建逻辑卷" class="headerlink" title="1.创建逻辑卷"></a>1.创建逻辑卷</h6><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1.创建分区</span><br><span class="line">fdisk /dev/nvme0n2  划分磁盘nvme0n2</span><br><span class="line"></span><br><span class="line">Welcome to fdisk (util-linux 2.32.1).</span><br><span class="line">Changes will remain in memory only, until you decide to write them.</span><br><span class="line">Be careful before using the write command.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Command (m for help): p     //查看已有分区</span><br><span class="line">Device         Boot    Start      End  Sectors Size Id Type</span><br><span class="line">/dev/nvme0n2p1          2048 20973567 20971520  10G 83 Linux</span><br><span class="line">/dev/nvme0n2p2      20973568 62916607 41943040  20G 83 Linux</span><br><span class="line">/dev/nvme0n2p3      62916608 79693823 16777216   8G 83 Linux</span><br><span class="line"></span><br><span class="line">Command (m for help): n		//创建新的分区</span><br><span class="line"></span><br><span class="line">Value out of range.</span><br><span class="line">   p   primary (2 primary, 0 extended, 2 free)</span><br><span class="line">   e   extended (container for logical partitions)</span><br><span class="line">Select (default p): p</span><br><span class="line">Partition number (3,4, default 3): 3</span><br><span class="line">First sector (62916608-104857599, default 62916608): </span><br><span class="line">Last sector, +sectors or +size&#123;K,M,G,T,P&#125; (62916608-104857599, default 104857599): +8G</span><br><span class="line"></span><br><span class="line">Created a new partition 3 of type &#x27;Linux&#x27; and of size 8 GiB.</span><br><span class="line"></span><br><span class="line">Command (m for help): w 		//记得保存	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.创建pv</span><br><span class="line">pvcreate /dev/nvme0n2p3</span><br><span class="line"></span><br><span class="line">3.创建vg</span><br><span class="line">vgcreate myvg（名字） /dev/nvme0n2p3</span><br><span class="line"></span><br><span class="line">4.创建lv</span><br><span class="line">lvcreate -l 1024 -n mylv myvg</span><br><span class="line">50个LE，每个LE4M，所以最后文件系统只有200M</span><br><span class="line"></span><br><span class="line">5.格式化逻辑卷</span><br><span class="line">mkfs.xfs /dev/testvg/testlv   //xfs文件系统</span><br><span class="line"></span><br><span class="line">6.挂载</span><br><span class="line">挂载文件 /etc/fstab</span><br><span class="line">mkdir /mnt/testlvm</span><br><span class="line">mount /dev/testvg/testlv /mnt/testlvm</span><br><span class="line"></span><br><span class="line">7.检查</span><br><span class="line">df -hT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="2-扩容"><a href="#2-扩容" class="headerlink" title="2.扩容"></a>2.扩容</h6><p> lvextend -L +3G /dev/testvg/testlv     大小==增加==3G</p>
+<p>xfs_growfs /mnt/testlvm/        刷新生效（xfs系统）</p>
+<h6 id="3-VDO"><a href="#3-VDO" class="headerlink" title="3.VDO"></a>3.VDO</h6><p>什么是VDO技术  rhel 8中特有的一种技术  红帽公司收购了 Permabit公司的技术</p>
+<p>vdo的最大的作用就是节省磁盘空间 可以做到一个1T的磁盘 可以存放2T的数据  </p>
+<p>vdo怎么实现？  靠的就是重删和压缩解压缩技术  重删就是硬盘里相同的数据，以前要存多份，现在会把多余的删掉，只留一份。压缩技术 压缩算法来节省空间</p>
+<p>创建过程：</p>
+<p>1.yum install -y vdo  kmod-vdo  </p>
+<p>安装完成需要重启设备<br>保证系统上有一块完整的磁盘 大小随意 10G左右 用来做vdo卷</p>
+<p>2.vdo create –name=testvdo –device=/dev/硬盘名称 –vdoLogicalSize=30G  </p>
+<p>lsblk或者fdisk -l来查看是否创建成功</p>
+<p>3.mkfs.xfs /dev/mapper/testvdo</p>
+<p>4.挂载</p>
+<p>mount   /dev/mapper/testvdo   /挂载目录</p>
+<p>df -hT 查看检查是否成功  </p>
 ]]></content>
       <categories>
         <category>LINUX</category>
