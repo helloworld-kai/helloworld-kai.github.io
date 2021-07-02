@@ -257,6 +257,15 @@
       </categories>
   </entry>
   <entry>
+    <title>我的博客网站</title>
+    <url>/2021/05/28/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-1/</url>
+    <content><![CDATA[<p> 自己动手搭建的第一个网站，踩了好多坑，anyway，还是成功了。成就感get。</p>
+]]></content>
+      <categories>
+        <category>闲谈</category>
+      </categories>
+  </entry>
+  <entry>
     <title>解决DIV相互重叠问题</title>
     <url>/2021/05/29/%E8%A7%A3%E5%86%B3DIV%E7%9B%B8%E4%BA%92%E9%87%8D%E5%8F%A0%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>场景：网站设计中，首页的pagebody中有2块div，一块是sidebar，另一块是mainbody。最下面是foot的div。</p>
@@ -265,15 +274,6 @@
 ]]></content>
       <categories>
         <category>WEB前端</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>我的博客网站</title>
-    <url>/2021/05/28/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99-1/</url>
-    <content><![CDATA[<p> 自己动手搭建的第一个网站，踩了好多坑，anyway，还是成功了。成就感get。</p>
-]]></content>
-      <categories>
-        <category>闲谈</category>
       </categories>
   </entry>
 </search>
